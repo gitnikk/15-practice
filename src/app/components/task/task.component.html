@@ -1,0 +1,33 @@
+<h1>Task list</h1>
+
+<table>
+  <tr>
+    <td><input type="radio" [(ngModel)]="taskFilter" value="All" (click)="filterTasks('All')"/> All</td>
+    <td><input type="radio" [(ngModel)]="taskFilter" value="Completed"  (click)="filterTasks('Completed')" /> Completed</td>
+    <td><input type="radio" [(ngModel)]="taskFilter" value="Incomplete"  (click)="filterTasks('Incomplete')" /> Incompleted</td>
+  </tr>
+  <tr>
+    <th>#</th>
+    <th>Task</th>
+    <th>Action</th>
+  </tr>
+  <tr *ngFor="let task of filteredTaskList">
+    <td>
+      <input type="checkbox" [(ngModel)]="task.isCompleted" />
+
+    </td>
+    <td>
+      <span [class.strike-text]="task.isCompleted">{{ task?.description }}</span>
+    </td>
+    <td>
+      <button class="btn btn-primary" (click)="deleteTask(task)">Delete</button>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="3">
+      <input type="text" [(ngModel)]="description" (keydown.enter)="addTask()" />
+      <button (click)="addTask()">Add</button>
+    </td>
+  </tr>
+</table>
