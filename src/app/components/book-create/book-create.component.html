@@ -1,9 +1,53 @@
 <div class="container">
-  <div class="card mt-5 col-md-6 offset-md-3">
-    <div class="card-header">Books Management</div>
-    <div class="card-body"></div>
-    <div class="card-footer">
-      <button class="btn btn-primary">Add</button>
-    </div>
+  <div class="card mt-5">
+    <form [formGroup]="bookForm" (ngSubmit)="saveBook()">
+      <div class="card-header">Add New Book</div>
+      <div class="card-body">
+        <div class="form-group">
+          <label for="bookName" class="form-label">Book Name</label>
+          <input type="text" class="form-control" [ngClass]="displayClassName['bookName']"  formControlName="bookName" />
+          <div class="invalid-feedback">
+            {{ this.errorMessages['bookName'] }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="authorName" class="form-label">Author Name</label>
+          <input type="text" class="form-control" formControlName="authorName" [ngClass]="displayClassName['authorName']" />
+          <div class="invalid-feedback">
+            {{ this.errorMessages['authorName'] }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="authorName" class="form-label">Author Name</label>
+          <div class="form-check ">
+            <input type="radio" formControlName="category" id="fictional" value="Fictional" class="form-check-input" [ngClass]="displayClassName['category']" />
+            <label for="fictional" class="form-check-label">Fictional</label>
+          </div>
+          <div class="form-check ">
+            <input type="radio" formControlName="category" value="Non-Fictional" class="form-check-input" id="nonfictional" [ngClass]="displayClassName['category']" />
+            <label for="nonfictional" class="form-check-label">Non-Fictional</label>
+            <div class="invalid-feedback">
+              {{ this.errorMessages['category'] }}
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input " [ngClass]="displayClassName['isAvailable']" type="checkbox" formControlName="isAvailable" id="isAvailable" >
+          <label class="form-check-label" for="isAvailable">
+            Book is available
+          </label>
+          <div class="invalid-feedback">
+            {{ this.errorMessages['isAvailable'] }}
+          </div>
+        </div>
+
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-primary">Save</button>
+      </div>
+    </form>
   </div>
 </div>

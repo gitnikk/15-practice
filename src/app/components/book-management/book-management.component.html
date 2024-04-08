@@ -1,0 +1,12 @@
+<p>book management component works</p>
+<div class="row">
+
+  <div class="col-md-6">
+
+    <app-book-list [books]="books"></app-book-list>
+  </div>
+  <div class="col-md-6">
+    <app-book-create (addBook)="addBookDetails($event)"></app-book-create>
+  </div>
+</div>
+
